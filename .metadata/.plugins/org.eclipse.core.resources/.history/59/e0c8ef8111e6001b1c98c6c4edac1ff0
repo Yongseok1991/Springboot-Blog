@@ -1,0 +1,16 @@
+package com.cos.blog.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import lombok.NoArgsConstructor;
+
+@Controller
+@NoArgsConstructor
+
+public class BlogController {
+	@GetMapping("/home")
+	public String home() {
+		return "home";
+	}
+} // end class
