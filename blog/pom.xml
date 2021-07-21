@@ -20,7 +20,32 @@
 	
 	<dependencies>
 	<!-- 추가 라이브러리 시작 -->
-	
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+		    	<artifactId>tomcat-embed-jasper</artifactId>
+			</dependency>
+			
+			<!-- 시큐리티 태그 라이브러리 -->
+			<dependency>
+			  <groupId>org.springframework.security</groupId>
+			  <artifactId>spring-security-taglibs</artifactId>
+			</dependency>
+			
+			<!-- JSTL -->
+			<dependency>
+			  <groupId>javax.servlet</groupId>
+			  <artifactId>jstl</artifactId>
+			</dependency>
+			
+			<!--  자동 리로드 -->
+			<dependency> 
+				<groupId>org.springframework.boot</groupId>
+			 	<artifactId>spring-boot-devtools</artifactId> 
+				<scope>runtime</scope> 
+				 <optional>true</optional> 
+			 </dependency>
+
+
 	<!-- 추가 라이브러리 종료 -->
 	 
 			<dependency>
