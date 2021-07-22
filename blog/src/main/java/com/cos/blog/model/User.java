@@ -1,4 +1,4 @@
-package com.cos.blog.domain;
+package com.cos.blog.model;
 
 import java.sql.Timestamp;
 
@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,7 +32,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int id; // 시퀀스, auto_increment
 	
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 30, unique = true)
 	private String userName; // 아이디
 	
 	@Column(nullable = false, length = 100)
@@ -50,6 +50,8 @@ public class User {
 	@CreationTimestamp 
 	private Timestamp createDate; //생성시간
 	
+	@UpdateTimestamp
+	private Timestamp updateDate;
 	
 	
 } // end class

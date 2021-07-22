@@ -1,4 +1,4 @@
-package com.cos.blog.controller;
+package com.cos.blog.test;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cos.blog.domain.Member;
+import com.cos.blog.model.Member;
 // 사용자가 요청 -> 응답(HTML 파일)
 // @Controller
 // 사용자가 요청 -> 응답(Data)

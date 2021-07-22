@@ -1,4 +1,4 @@
-package com.cos.blog.domain;
+package com.cos.blog.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

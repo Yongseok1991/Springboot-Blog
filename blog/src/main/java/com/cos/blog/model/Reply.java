@@ -1,4 +1,4 @@
-package com.cos.blog.domain;
+package com.cos.blog.model;
 
 import java.sql.Timestamp;
 
@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,4 +41,7 @@ public class Reply {
 	
 	@CreationTimestamp
 	private Timestamp createDate;
+	
+	@UpdateTimestamp
+	private Timestamp updateDate;
 } // end class

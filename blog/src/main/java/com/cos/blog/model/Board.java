@@ -1,4 +1,4 @@
-package com.cos.blog.domain;
+package com.cos.blog.model;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,4 +57,7 @@ public class Board {
 	
 	@CreationTimestamp
 	private Timestamp createDate;
+	
+	@UpdateTimestamp
+	private Timestamp updateDate;
 } // end class
