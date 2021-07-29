@@ -26,4 +26,10 @@ public class UserController {
 		log.info("loginForm() invoked.");
 		return "user/loginForm";
 	} // loginForm
+	
+	@GetMapping("/user/updateForm")
+	public String updateForm() {
+		log.info("updateForm() invoked.");
+		return "user/updateForm";
+	} // loginForm
 } // end class

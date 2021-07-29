@@ -3,6 +3,9 @@ let index = {
 		$('#btn-save').on("click", () => {  //function(){}, ()=>{} this를 바인딩하기 위해서!!
 			this.save();
 		});
+		$('#btn-update').on("click", () => {  //function(){}, ()=>{} this를 바인딩하기 위해서!!
+			this.update();
+		});
 	},
 	save: function() {
 		let data = {
@@ -24,6 +27,30 @@ let index = {
 
 		}).done(function(resp) {
 			alert("회원가입이 완료되었습니다.");
+			console.log(resp);
+			location.href = "/";  // 한줄주석 CRTL+SHIFT+C, 여러줄주석 CRTL+SHIFT+L 
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		}) // ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert  요청
+	},
+	
+	update: function() {
+		let data = {
+			id: $("#id").val(),
+			password: $("#password").val(),
+			email: $("#email").val()
+		};
+	
+		$.ajax({
+			// 회원가입 수행 요청
+			type: "PUT",
+			url: "/user",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
+			dataType: "json" // 요청을 서버로 해서 응답이 왔을 때 기본적으로 모든 것이 문자열
+	
+		}).done(function(resp) {
+			alert("회원 수정이 완료되었습니다.");
 			console.log(resp);
 			location.href = "/";  // 한줄주석 CRTL+SHIFT+C, 여러줄주석 CRTL+SHIFT+L 
 		}).fail(function(error) {
