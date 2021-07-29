@@ -44,4 +44,5 @@ public class Reply {
 	
 	@UpdateTimestamp
 	private Timestamp updateDate;
+	
 } // end class

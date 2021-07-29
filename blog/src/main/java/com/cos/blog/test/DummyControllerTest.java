@@ -38,7 +38,7 @@ public class DummyControllerTest {
 		try {
 			
 			userRepository.deleteById(id);
-		
+			
 		} catch(EmptyResultDataAccessException e) {
 			
 			return "삭제에 실패하셨습니다. 해당 id는 DB에 없습니다.";
@@ -79,7 +79,7 @@ public class DummyControllerTest {
 	
 	// 한 페이지당 2건의 데이터를 리턴받아 볼 예정
 	@GetMapping("/dummy/user")
-	public List<User> pageList(
+	public Page<User> pageList(
 			@PageableDefault(
 					size=2, 
 					sort="id", 
@@ -94,13 +94,13 @@ public class DummyControllerTest {
 //		}
 		List<User> users = pagingUser.getContent();
 		
-		return users;
+		return pagingUser;
 	}
 	
 	@PostMapping("/dummy/join")
 	public String join(User user) {
 		
-		System.out.println("userName: " + user.getUserName());
+		System.out.println("userName: " + user.getUsername());
 		System.out.println("password: " + user.getPassword());
 		System.out.println("email: " + user.getEmail());
 		System.out.println("id: " + user.getId());
