@@ -27,7 +27,7 @@ public class BoardController {
 	@GetMapping({ "/", "" })
 	public String index(
 //			@AuthenticationPrincipal PrincipalDetail principal
-			Model model, @PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+			Model model, @PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 		
 		log.info("index(model, pageable) invoked.");
 		

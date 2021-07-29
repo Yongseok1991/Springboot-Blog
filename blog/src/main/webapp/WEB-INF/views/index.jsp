@@ -14,10 +14,10 @@
 	<ul class="pagination justify-content-center">
 		<c:choose>
 			<c:when test="${boards.first}">
-				<li class="page-item disabled"><a class="page-link" href="?page=${boards.number-1}">Previous</a></li>
+				<li class="page-item disabled"><a class="page-link" href="?page=${startBlockPage-2}">Previous</a></li>
 			</c:when>
 			<c:otherwise>
-				<li class="page-item"><a class="page-link" href="?page=${boards.number-1}">Previous</a></li>
+				<li class="page-item"><a class="page-link" href="?page=${startBlockPage-2}">Previous</a></li>
 			</c:otherwise>
 		</c:choose>
 
@@ -34,10 +34,10 @@
 
 		<c:choose>
 			<c:when test="${boards.last}">
-				<li class="page-item disabled"><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
+				<li class="page-item disabled"><a class="page-link" href="?page=${endBlockPage}">Next</a></li>
 			</c:when>
 			<c:otherwise>
-				<li class="page-item"><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
+				<li class="page-item"><a class="page-link" href="?page=${endBlockPage}">Next</a></li>
 			</c:otherwise>
 		</c:choose>
 
