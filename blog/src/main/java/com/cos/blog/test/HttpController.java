@@ -20,13 +20,13 @@ public class HttpController {
 	@GetMapping("/get")
 	public String getTest(Member mem) {
 		System.out.println("getTest() invoked.");
-		return "get 요청" + mem.getId() + mem.getUserName() + mem.getPassword() + mem.getEmail();
+		return "get 요청" + mem.getId() + mem.getUsername() + mem.getPassword() + mem.getEmail();
 	} // getTest
 	
 	@PostMapping("/post")
 	public String postTest(@RequestBody Member mem) {
 		System.out.println("postTest() invoked.");
-		return "post 요청 " + mem.getId() + mem.getUserName() + mem.getPassword() + mem.getEmail();
+		return "post 요청 " + mem.getId() + mem.getUsername() + mem.getPassword() + mem.getEmail();
 	} // getTest
 	
 	@PutMapping("/put")

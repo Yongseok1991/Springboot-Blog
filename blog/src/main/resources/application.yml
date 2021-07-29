@@ -1,7 +1,7 @@
 server:
   port: 8000
   servlet:
-    context-path: /blog
+    context-path: /
     encoding:
       charset: UTF-8
       enabled: true
@@ -9,19 +9,21 @@ server:
     
 spring:
   mvc:
+    converters:
+      preferred-json-mapper: gson
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-    devtools:
-      livereload: 
+  devtools:
+    livereload: 
       enabled: true
-    freemarker:
+  freemarker:
     cache: false
-
+    
     
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: cos
     password: oracle
     
