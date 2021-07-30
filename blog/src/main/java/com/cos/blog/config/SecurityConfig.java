@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private PrincipalDetailService principalDetailService;
+	
 	@Autowired
-	@Qualifier("dataSource")
 	private DataSource dataSource;
 
 	@Bean
@@ -60,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.key("Yong")
 				.userDetailsService(principalDetailService)
 				.tokenRepository(tokenRepository())
+				// 일주일
 				.tokenValiditySeconds(604800);
 		
 		http.logout()

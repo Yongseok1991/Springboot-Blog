@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,7 +40,7 @@ public class Board {
 	//섬머노트 라이브러리 <html> 태그가 섞여서 디자인이 됨
 	@Lob
 	private String content;
-
+	
 	private int count; // 조회수
 	
 	// DB는 오브젝트를 저장할 수 없다. FK // 자바는 오브젝트를 저장할 수 있다.

@@ -59,11 +59,15 @@ public class BoardController {
 	}
 
 	@GetMapping("board/{id}")
-	public String findById(@PathVariable int id, Model model) {
+	public String findById(
+			@PathVariable int id,
+			Model model
+			) {
 		
 		log.info("findById(id, model) invoked.");
-		
+	
 		Board detail = boardService.boardDetail(id);
+		
 		model.addAttribute("board", detail);
 		return "board/detail";
 	}

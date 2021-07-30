@@ -7,6 +7,7 @@
 			<div class="card-body">
 				<h4 class="card-title">${board.title}</h4>
 				<a href="/board/${board.id}" class="btn btn-primary stretched-link">상세보기</a>
+				<span><i>조회수 ${board.count}</i></span>
 			</div>
 		</div>
 	</c:forEach>
