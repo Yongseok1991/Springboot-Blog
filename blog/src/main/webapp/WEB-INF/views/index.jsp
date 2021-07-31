@@ -5,21 +5,23 @@
 <div class="container">
 	<div class="row">
 		<div class="col card" style="margin: .9rem!important">
-			<img class="card-img-top" src="/image/kim.jpg" alt="Card image" style="width: 100%">
+			<img class="img-thumbnail card-img-top " src="/image/kim.jpg" alt="Card image" style="width: 100%">
 			<div class="card-body">
 				<h4 class="card-title" style="text-align:center">YongSeok</h4>
 				<p class="card-text">항상 배우는 개발자 김용석입니다.</p>
 			</div>
 		</div>
+		
 		<c:forEach var="board" items="${boards.content}">
 			<div class="col card m-2" style="margin: .9rem!important; height: 15rem;">
 				<div class="card-body">
 					<h4 class="card-title">${board.title}</h4>
 					<a href="/board/${board.id}" class="btn btn-primary stretched-link">상세보기</a><br>
-					<span><i>조회수 ${board.count}</i></span>
+					<span>조회수 ${board.count}</span>
 				</div>
 			</div>
 		</c:forEach>
+		
 	</div>
 	<ul class="pagination justify-content-center">
 		<c:choose>

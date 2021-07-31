@@ -31,6 +31,7 @@ public class BoardService {
 		board.setCount(0);
 		board.setUser(user);
 		boardRepository.save(board);
+		
 	} // boardWrite
 
 	@Transactional(readOnly = true)

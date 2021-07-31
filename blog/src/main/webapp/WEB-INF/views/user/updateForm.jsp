@@ -3,7 +3,7 @@
 <%@ include file="../layout/header.jsp"%>
 
 	<div class="container">
-		<form>
+		<form class="updateForm">
 			<input type="hidden" id="id" value="${principal.user.id}">
 			<div class="form-group">
 				<label for="username">Username:</label> 

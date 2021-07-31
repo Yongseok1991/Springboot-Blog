@@ -45,7 +45,8 @@ let index = {
 			password: $("#password").val(),
 			email: $("#email").val()
 		};
-
+		
+		console.log(data);
 		$.ajax({
 			// 회원가입 수행 요청
 			type: "PUT",
@@ -55,9 +56,14 @@ let index = {
 			dataType: "json" // 요청을 서버로 해서 응답이 왔을 때 기본적으로 모든 것이 문자열
 
 		}).done(function(resp) {
-			alert("회원 수정이 완료되었습니다.");
-			console.log(resp);
-			location.href = "/";  // 한줄주석 CRTL+SHIFT+C, 여러줄주석 CRTL+SHIFT+L 
+			if (resp.status === 500) {
+				alert("회원 수정이 실패하였습니다.");
+			} else {
+				alert("회원 수정이 완료되었습니다.");
+				console.log(resp);
+				location.href = "/";
+			}
+			//			location.href = "/";  // 한줄주석 CRTL+SHIFT+C, 여러줄주석 CRTL+SHIFT+L 
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		}) // ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert  요청
