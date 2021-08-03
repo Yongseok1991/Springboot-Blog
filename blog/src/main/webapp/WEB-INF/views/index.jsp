@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="layout/header.jsp"%>
-<header class="masthead" style="background-image: url('/image/gogi.jpg')">
+<header class="masthead" style="background-image: url('/image/home-bg.jpg')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -19,7 +19,7 @@
 			<img class="img-thumbnail card-img-top" src="/image/kim.jpg" alt="Card image" style="width: 100%">
 			<div class="card-body">
 				<h4 class="card-title" style="text-align:center">YongSeok</h4>
-				<p class="card-text">항상 배우는 개발자 김용석입니다.</p>
+				<p class="card-text">배우는 개발자 김용석입니다.</p>
 			</div>
 		</div>
 		
@@ -54,7 +54,6 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-
 		<c:choose>
 			<c:when test="${boards.last}">
 				<li class="page-item disabled"><a class="page-link" href="?page=${endBlockPage}">></a></li>

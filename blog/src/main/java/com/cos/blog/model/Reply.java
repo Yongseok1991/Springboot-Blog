@@ -30,6 +30,7 @@ public class Reply {
 	
 	@ManyToOne
 	@JoinColumn(name="boardId")
+	
 	private Board board;
 	
 	@JoinColumn(name="userId")
@@ -37,7 +38,7 @@ public class Reply {
 	private User user;
 	
 	@Column(nullable = false, length = 200)
-	private String contents;
+	private String content;
 	
 	@CreationTimestamp
 	private Timestamp createDate;

@@ -3,6 +3,8 @@ package com.cos.blog.controller.api;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
@@ -23,8 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cos.blog.config.auth.PrincipalDetail;
 import com.cos.blog.dto.ResponseDTO;
 import com.cos.blog.model.Board;
+import com.cos.blog.model.Reply;
 import com.cos.blog.service.BoardService;
-import com.google.gson.JsonObject;
 
 @RestController
 public class BoardApiController {
@@ -64,11 +66,11 @@ public class BoardApiController {
 	}
 
 	@PostMapping(value = "/uploadSummernoteImageFile", produces = "application/json")
-	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
+	public Map<String, Object> uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
 
 		log.info("\t+ uploadSummernoteImageFile(multipartFile) invoked.");
 
-		JsonObject jsonObject = new JsonObject();
+		Map<String, Object> params = new HashMap<>();
 
 		String fileRoot = "C:\\summernote_image\\"; // 저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
@@ -82,17 +84,31 @@ public class BoardApiController {
 
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-			jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
-			jsonObject.addProperty("responseCode", "success");
+			params.put("url", "/summernoteImage/" + savedFileName);
+			params.put("responseCode", "success");
 
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
+			params.put("responseCode", "error");
 			e.printStackTrace();
-
 		}
+		log.info("params:  " + params);
+		return params;
+	}
+	
+	@PostMapping("/api/board/{boardId}/reply")
+	public ResponseDTO<Integer> Replysave(
+			@PathVariable int boardId, 
+			@RequestBody Reply reply, 
+			@AuthenticationPrincipal PrincipalDetail principal
+			) {
 
-		return jsonObject;
+		log.info("\t+ save(board, principal) invoked.");
+		
+		
+		
+		boardService.replyWrite(principal.getUser(), boardId, reply);
+		return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
 	}
 
 } // end class

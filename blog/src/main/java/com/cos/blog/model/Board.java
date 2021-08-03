@@ -13,10 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.boot.context.properties.bind.DefaultValue;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,6 +55,8 @@ public class Board {
 	// mappedBy 연관관계의 주인이 아니다(난 FK가 아니다)
 	// db에 컬럼을 만들지 마세요
 	@OneToMany(mappedBy = "board" , fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"board"})
+	@OrderBy("id desc")
 	private List<Reply> reply;
 	
 	@CreationTimestamp

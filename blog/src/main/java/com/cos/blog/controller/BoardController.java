@@ -41,6 +41,7 @@ public class BoardController {
 		int pageBlock = 5;
 		int startBlockPage = ((pageNumber) / pageBlock) * pageBlock + 1;
 		int endBlockPage = startBlockPage + pageBlock - 1;
+		
 		endBlockPage = totalPages < endBlockPage ? totalPages : endBlockPage;
 
 //		log.info("로그인 사용자 아이디:{} ", principal.getUsername());

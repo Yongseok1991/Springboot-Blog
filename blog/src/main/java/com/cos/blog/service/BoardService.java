@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.blog.model.Board;
+import com.cos.blog.model.Reply;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.BoardRepository;
+import com.cos.blog.repository.ReplyRepository;
 
 
 
@@ -23,6 +25,9 @@ public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
 
+	@Autowired
+	private ReplyRepository replyRepository;
+	
 	@Transactional
 	public void boardWrite(Board board, User user) {
 
@@ -77,5 +82,16 @@ public class BoardService {
 		log.info("\t+ increaseViewCount(id) invoked.");
 
 	}
+	
+	@Transactional
+	public void replyWrite(User user, int boardId, Reply requestReply) {
+		
+		Board board = boardRepository.findById(boardId).orElseThrow(()-> new IllegalArgumentException("댓글 쓰기 실패"));
+		requestReply.setUser(user);
+		requestReply.setBoard(board);
+		
+		replyRepository.save(requestReply);
+	}
+	
 
 } // end class
