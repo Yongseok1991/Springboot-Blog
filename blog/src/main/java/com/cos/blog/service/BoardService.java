@@ -8,8 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.blog.dto.ReplySaveRequestDTO;
 import com.cos.blog.model.Board;
-import com.cos.blog.model.Reply;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.BoardRepository;
 import com.cos.blog.repository.ReplyRepository;
@@ -60,9 +60,9 @@ public class BoardService {
 	public void boardDelete(int id) {
 
 		log.info("\t+ boardDelete(id) invoked.");
-
+		
+		replyRepository.deleteAll();
 		boardRepository.deleteById(id);
-
 	}
 
 	@Transactional
@@ -84,14 +84,20 @@ public class BoardService {
 	}
 	
 	@Transactional
-	public void replyWrite(User user, int boardId, Reply requestReply) {
+	public void replyWrite(ReplySaveRequestDTO requestReply) {
+		//  영속화
+//		Board board = boardRepository.findById(requestReply.getBoardId()).orElseThrow(()-> new IllegalArgumentException("댓글 쓰기 실패 board"));
+//		User user = userRepository.findById(requestReply.getUserId()).orElseThrow(()-> new IllegalArgumentException("댓글 쓰기 실패 user"));
+//		
+//		Reply reply = new Reply();
+//		reply.update(user, board, requestReply.getContent());
 		
-		Board board = boardRepository.findById(boardId).orElseThrow(()-> new IllegalArgumentException("댓글 쓰기 실패"));
-		requestReply.setUser(user);
-		requestReply.setBoard(board);
-		
-		replyRepository.save(requestReply);
+		replyRepository.mSave(requestReply.getUserId(), requestReply.getBoardId(), requestReply.getContent());
 	}
 	
-
+	@Transactional
+	public void replyDelete(int replyId) {
+		replyRepository.deleteById(replyId);
+	}
+	
 } // end class

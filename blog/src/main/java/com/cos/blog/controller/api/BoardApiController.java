@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cos.blog.config.auth.PrincipalDetail;
+import com.cos.blog.dto.ReplySaveRequestDTO;
 import com.cos.blog.dto.ResponseDTO;
 import com.cos.blog.model.Board;
-import com.cos.blog.model.Reply;
 import com.cos.blog.service.BoardService;
 
 @RestController
@@ -95,20 +95,29 @@ public class BoardApiController {
 		log.info("params:  " + params);
 		return params;
 	}
-	
+	// 데이터 받을때 컨틀롤러에서 dto를 만들어서 받는게 좋다.
+	// dto를 사용하지 않는 이유는!! 
 	@PostMapping("/api/board/{boardId}/reply")
-	public ResponseDTO<Integer> Replysave(
-			@PathVariable int boardId, 
-			@RequestBody Reply reply, 
-			@AuthenticationPrincipal PrincipalDetail principal
+	public ResponseDTO<Integer> Replysave( 
+			@RequestBody ReplySaveRequestDTO reply
 			) {
 
 		log.info("\t+ save(board, principal) invoked.");
 		
+		boardService.replyWrite(reply);
+		return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@DeleteMapping("/api/board/{boardId}/reply/{replyId}")
+	public ResponseDTO<Integer> Replysave(@PathVariable int replyId) {
 		
+		log.info("\t+ save(board, principal) invoked.");
 		
-		boardService.replyWrite(principal.getUser(), boardId, reply);
+		boardService.replyDelete(replyId);
 		return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
 	}
 
+	
+	
+	
 } // end class

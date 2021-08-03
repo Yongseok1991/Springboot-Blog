@@ -80,22 +80,45 @@ let index = {
 
 	replySave: function() {
 		let data = {
-			content: $("#reply-content").val()
+			userId: $("#userId").val(),
+			content: $("#reply-content").val(),
+			boardId: $("#boardId").val()
 		};
-		let boardId = $("#boardId").val();
 		console.log(data);
 		$.ajax({
 
 			type: "POST",
-			url: `/api/board/${boardId}/reply`,
+			url: `/api/board/${data.boardId}/reply`,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 
 		}).done(function(resp) {
-			alert("댓글작성이 완료되었습니다.");
-			console.log(resp);
-			location.href = `/board/${boardId}`;
+			if (resp.content != "") {
+				alert("댓글작성이 완료되었습니다.");
+				console.log(resp);
+				location.href = `/board/${data.boardId}`;
+			} else {
+				alert("내용을 입력하세요");
+			}
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		})
+	},
+	
+	replyDelete: function(boardId, replyId) {
+
+		$.ajax({
+
+			type: "DELETE",
+			url: `/api/board/${boardId}/reply/${replyId}`,
+			dataType: "json"
+
+		}).done(function(resp) {
+				alert("댓글삭제가이 완료되었습니다.");
+			
+				location.href = `/board/${boardId}`;
+		
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		})
