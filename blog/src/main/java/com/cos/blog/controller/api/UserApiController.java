@@ -54,7 +54,9 @@ public class UserApiController {
 				Authentication auth = authenticationManager
 						.authenticate(
 								new UsernamePasswordAuthenticationToken(
-										user.getUsername(), user.getPassword()));
+											user.getUsername(), 
+											user.getPassword())
+								);
 				SecurityContextHolder.getContext().setAuthentication(auth);
 		return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
 	}
