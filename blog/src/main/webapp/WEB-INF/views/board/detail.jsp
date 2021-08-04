@@ -27,7 +27,8 @@
 	<hr />
 	<div class="card">
 		<form>
-			<input type="hidden" id="userId" value="${principal.user.id}" /> <input type="hidden" id="boardId" value="${board.id}" />
+			<input type="hidden" id="userId" value="${principal.user.id}" />
+			 <input type="hidden" id="boardId" value="${board.id}" />
 			<div>
 				<div class="card-body">
 					<textarea id="reply-content" class="form-control" rows="1" cols=""></textarea>
@@ -48,7 +49,7 @@
 					<div class="d-flex">
 						<div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
 						<c:if test="${reply.user.id == principal.user.id}">
-							<button type="button" id="btn-reply-update" class="badge" style="color: black;">수정</button>
+							<button onClick="updateViewBtn(${reply.id})" class="badge" style="color: black;">수정</button>
 							<button onClick="index.replyDelete(${board.id}, ${reply.id})" class="badge" style="color: black;">삭제</button>
 						</c:if>
 					</div>
@@ -59,5 +60,6 @@
 	</div>
 
 </div>
+
 <script src="/js/board.js"></script>
 <%@ include file="../layout/footer.jsp"%>
