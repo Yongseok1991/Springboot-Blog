@@ -100,4 +100,10 @@ public class BoardService {
 		replyRepository.deleteById(replyId);
 	}
 	
+	@Transactional
+	public void replyUpdate(String content,  int replyId) {
+		
+		replyRepository.mUpdate(content, replyId);
+	}
+	
 } // end class

@@ -9,7 +9,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="password">Password:</label> <input type="password" class="form-control" placeholder="Enter password" id="password">
+				<label for="password">Password:</label> <input type="password" class="form-control" placeholder="영문,숫자,특수문자(!@$%^&* 만 허용)를 조합하여 8~12자로 구성" id="password">
 			</div>
 			
 			<div class="form-group">

@@ -15,8 +15,7 @@
 	</div>
 	<br> <br>
 	<div>
-		글번호 <span id="id"><i>${board.id}</i></span> 작성자 <span><i>${board.user.username} </i></span> 조회수 <span><i>${board.count} </i></span>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.createDate}</span>
+		글번호 <span id="id"><i>${board.id}</i></span> 작성자 <span><i>${board.user.username} </i></span> 조회수 <span><i>${board.count} </i></span> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.createDate}</span>
 	</div>
 	<div>
 		<h3>${board.title}</h3>
@@ -49,6 +48,7 @@
 					<div class="d-flex">
 						<div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
 						<c:if test="${reply.user.id == principal.user.id}">
+							<button type="button" id="btn-reply-update" class="badge" style="color: black;">수정</button>
 							<button onClick="index.replyDelete(${board.id}, ${reply.id})" class="badge" style="color: black;">삭제</button>
 						</c:if>
 					</div>
@@ -57,7 +57,7 @@
 
 		</ul>
 	</div>
-</div>
 
+</div>
 <script src="/js/board.js"></script>
 <%@ include file="../layout/footer.jsp"%>

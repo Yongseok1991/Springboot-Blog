@@ -12,11 +12,29 @@ let index = {
 		$('#btn-reply-save').on("click", () => {  //function(){}, ()=>{} this를 바인딩하기 위해서!!
 			this.replySave();
 		});
+		$('#btn-reply-update').on("click", () => {  //function(){}, ()=>{} this를 바인딩하기 위해서!!
+			this.replyUpdate();
+		});
 	},
 	save: function() {
+		let title = $("#title").val();
+		let content = $("#content").val();
+
+		if (title == "") {
+			alert("제목을 입력하세요");
+			$("#title").focus();
+			return false;
+		}
+
+		if (content == "") {
+			alert("내용을 입력하세요");
+			$("#content").focus();
+			return false;
+		}
+
 		let data = {
-			title: $("#title").val(),
-			content: $("#content").val()
+			title: title,
+			content: content
 		};
 
 		$.ajax({
@@ -79,6 +97,12 @@ let index = {
 	},
 
 	replySave: function() {
+
+		if ($("#reply-content").val() == "") {
+			alert('내용을 입력하세요');
+			return false;
+		}
+
 		let data = {
 			userId: $("#userId").val(),
 			content: $("#reply-content").val(),
@@ -105,20 +129,40 @@ let index = {
 			alert(JSON.stringify(error));
 		})
 	},
-	
+
 	replyDelete: function(boardId, replyId) {
-
 		$.ajax({
-
 			type: "DELETE",
 			url: `/api/board/${boardId}/reply/${replyId}`,
 			dataType: "json"
 
 		}).done(function(resp) {
-				alert("댓글삭제가이 완료되었습니다.");
-			
-				location.href = `/board/${boardId}`;
+			alert("댓글삭제가 완료되었습니다.");
+
+			location.href = `/board/${boardId}`;
+
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		})
+	},
+
+	replyUpdate: function() {
+		let replyId = $('#replyId').val();
 		
+		let data = {
+			boardId: $("#boardId").val(),
+			content: $("#reply-content").val()
+		}
+		$.ajax({
+			type: "PUT",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			url: `/api/board/${boardId}/reply/${replyId}`,
+			dataType: "json"
+		}).done(function(resp) {
+
+			alert("댓글 수정이 완료되었습니다.")
+			location.href = `/board/${boardId}`;
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		})
