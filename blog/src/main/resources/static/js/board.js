@@ -147,12 +147,13 @@ let index = {
 	},
 
 	replyUpdate: function() {
-		let replyId = $('#replyId').val();
+
+		let boardId=$("#boardId").val();
 		
-		let data = {
-			boardId: $("#boardId").val(),
-			content: $("#reply-content").val()
-		}
+			let data = {
+				replyId: $('#replyId').val(),
+				content: $("#reply-editContent").val()
+			}
 		$.ajax({
 			type: "PUT",
 			data: JSON.stringify(data),
@@ -168,12 +169,6 @@ let index = {
 		})
 	}
 }
-function updateViewBtn(replyId) {
-		
-		var htmls ="";
-		htmls += "<li id='reply-"+ replyId + "class='list-group-item d-flex justify-content-between'>";
-		htmls += `<div class="card-body"><textarea id="reply-content" class="form-control" rows="1" cols=""></textarea></div>`;
-		
-		$( "#reply-" + replyId).replaceWith(htmls);
-	}
+
+
 index.init();

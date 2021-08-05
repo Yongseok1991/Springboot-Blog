@@ -60,6 +60,18 @@
 	</div>
 
 </div>
+<script>
+function updateViewBtn(replyId) {
 
+	var htmls = "";
+	htmls += "<div id='reply-" + replyId + "class='list-group-item d-flex justify-content-between'>";
+	htmls += `<div class="card-body"><textarea id="reply-editContent" class="form-control" rows="1" cols=""></textarea>`;
+	htmls += "<button type='button' id= 'btn-reply-update' class='badge' style='color: black;'>완료</button></div></div>";
+
+
+	$("#reply-" + replyId).replaceWith(htmls);
+	$('#reply-' +replyId + '#reply-editContent').focus();
+}
+</script>
 <script src="/js/board.js"></script>
 <%@ include file="../layout/footer.jsp"%>
