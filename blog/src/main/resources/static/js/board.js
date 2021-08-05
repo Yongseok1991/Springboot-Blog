@@ -180,7 +180,7 @@ function updateViewBtn(replyId) {
 
 
 	$("#reply-" + replyId).replaceWith(htmls);
-	$('#reply-' + replyId + '#reply-editContent').focus();
+	$('#reply-editContent').focus();
 }
 
 index.init();

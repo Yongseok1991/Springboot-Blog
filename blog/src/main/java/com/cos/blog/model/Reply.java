@@ -1,6 +1,6 @@
 package com.cos.blog.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,11 +43,13 @@ public class Reply {
 	@Column(nullable = false, length = 200)
 	private String content;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@CreationTimestamp
-	private Timestamp createDate;
+	private LocalDateTime createDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@UpdateTimestamp
-	private Timestamp updateDate;
+	private LocalDateTime updateDate;
 	
 	
 	public void update(User user, Board board, String content) {

@@ -48,10 +48,12 @@
 					<div>${reply.content}</div>
 					<div class="d-flex">
 						<div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
+						
 						<c:if test="${reply.user.id == principal.user.id}">
 							<button onClick="updateViewBtn(${reply.id})" class="badge" style="color: black;">수정</button>
 							<button onClick="index.replyDelete(${board.id}, ${reply.id})" class="badge" style="color: black;">삭제</button>
 						</c:if>
+						<div><h6 style="padding-top: 5px;">&nbsp; ${reply.createDate}</h6></div>
 					</div>
 				</li>
 			</c:forEach>

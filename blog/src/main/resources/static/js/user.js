@@ -113,7 +113,8 @@ function emailCheck(email) {
 }
 
 function passwdCheck(password) {
-	var regex =  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8, 12}$/;
+	var regex =  /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,12}$/;
+
 	return regex.test(password);
 }
 index.init();

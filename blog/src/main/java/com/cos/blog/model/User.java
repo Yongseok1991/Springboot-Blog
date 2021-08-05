@@ -1,6 +1,6 @@
 package com.cos.blog.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,9 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,11 +50,13 @@ public class User {
 	private RoleType role;
 	
 	//시간이 자동 입력
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@CreationTimestamp 
-	private Timestamp createDate; //생성시간
+	private LocalDateTime createDate; //생성시간
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@UpdateTimestamp
-	private Timestamp updateDate;
+	private LocalDateTime updateDate;
 	
 	
 } // end class

@@ -1,6 +1,6 @@
 package com.cos.blog.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,6 +17,7 @@ import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -59,9 +60,13 @@ public class Board {
 	@OrderBy("id desc")
 	private List<Reply> reply;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@CreationTimestamp
-	private Timestamp createDate;
+	private LocalDateTime createDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@UpdateTimestamp
-	private Timestamp updateDate;
+	private LocalDateTime updateDate;
+	
+	
 } // end class

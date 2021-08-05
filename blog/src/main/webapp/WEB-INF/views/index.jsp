@@ -29,11 +29,13 @@
 					<h4 class="card-title">${board.title}</h4>
 					<a href="/board/${board.id}" class="btn btn btn-primary">상세보기</a><br>
 					<span>조회수 ${board.count}</span>
+					
 				</div>
 			</div>
 		</c:forEach>
 		
 	</div>
+
 	<ul class="pagination justify-content-center">
 		<c:choose>
 			<c:when test="${boards.first}">
