@@ -101,7 +101,7 @@ public class BoardService {
 	}
 	
 	@Transactional
-	public void replyUpdate(String content,  int replyId) {
+	public void replyUpdate(String content, int replyId) {
 		
 		replyRepository.mUpdate(content, replyId);
 	}

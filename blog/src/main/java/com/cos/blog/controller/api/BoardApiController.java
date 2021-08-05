@@ -26,6 +26,7 @@ import com.cos.blog.config.auth.PrincipalDetail;
 import com.cos.blog.dto.ReplySaveRequestDTO;
 import com.cos.blog.dto.ResponseDTO;
 import com.cos.blog.model.Board;
+import com.cos.blog.model.Reply;
 import com.cos.blog.service.BoardService;
 
 @RestController
@@ -121,10 +122,12 @@ public class BoardApiController {
 	public ResponseDTO<Integer> ReplyUpdate(
 			@PathVariable String boardId,
 			@PathVariable int replyId,
-			@RequestBody String content
+			@RequestBody Reply reply
 			) {
 		
-		boardService.replyUpdate(content, replyId);
+		log.info("replyId:" + replyId);
+		log.info("\t+ content:" + reply.getContent());
+		boardService.replyUpdate(reply.getContent(), replyId);
 		return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
 	}
 	

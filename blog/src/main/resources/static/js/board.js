@@ -12,7 +12,7 @@ let index = {
 		$('#btn-reply-save').on("click", () => {  //function(){}, ()=>{} this를 바인딩하기 위해서!!
 			this.replySave();
 		});
-		$('#btn-reply-update').on("click", () => {  //function(){}, ()=>{} this를 바인딩하기 위해서!!
+		$(document).on("click", '#btn-reply-update', () => {  //function(){}, ()=>{} this를 바인딩하기 위해서!!
 			this.replyUpdate();
 		});
 	},
@@ -148,17 +148,17 @@ let index = {
 
 	replyUpdate: function() {
 
-		let boardId=$("#boardId").val();
+		let boardId = $("#boardId").val();
 		
-			let data = {
-				replyId: $('#replyId').val(),
-				content: $("#reply-editContent").val()
-			}
+		let data = {
+			replyId: $('#replyId').val(),
+			content: $("#reply-editContent").val()
+		}
 		$.ajax({
 			type: "PUT",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
-			url: `/api/board/${boardId}/reply/${replyId}`,
+			url: `/api/board/${boardId}/reply/${data.replyId}`,
 			dataType: "json"
 		}).done(function(resp) {
 
@@ -170,5 +170,17 @@ let index = {
 	}
 }
 
+function updateViewBtn(replyId) {
+
+	var htmls = "";
+	htmls += "<form><div id='reply-" + replyId + "class='list-group-item d-flex justify-content-between'>";
+	htmls += "<input type='hidden' id='replyId' value=" + replyId + ">";
+	htmls += `<div class="card-body"><textarea id="reply-editContent" class="form-control" rows="1" cols=""></textarea>`;
+	htmls += "<button type='button' id= 'btn-reply-update' class='badge' style='color: black;'>완료</button></div></div></form>";
+
+
+	$("#reply-" + replyId).replaceWith(htmls);
+	$('#reply-' + replyId + '#reply-editContent').focus();
+}
 
 index.init();
